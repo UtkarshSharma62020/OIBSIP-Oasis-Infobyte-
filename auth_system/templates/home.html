@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            border-radius: 55px;
+            border: double;
+            padding: 5px;
+            margin: 56px;
+            text-align: center;
+            background-color: cornsilk;
+        }
+
+        h1 {
+            font-size: 37px;
+            color: currentcolor;
+            font-family: monospace;
+        }
+        p{
+            font-size: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to the Home Page!</h1>
+    <p><a href="{% url 'login' %}">Login</a> or <a href="{% url 'register' %}">Register</a> to access the secure page.
+    </p>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Basic To-Do Webapp</title>
+    <style>
+        body {
+            text-align: center;
+            margin: 0;
+            padding: 60px;
+            background-color: antiquewhite;
+        }
+
+        input,
+        button {
+            border-radius: 12px;
+            padding: 10px;
+            margin: 5px;
+        }
+
+        li {
+            background-color: honeydew;
+            padding: 9px;
+            margin: 26px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Simple To-Do List</h1>
+
+    <div id="new-task-section">
+        <input type="text" id="task-input" placeholder="Add a new task">
+        <button id="add-task-btn">Add Task</button>
+    </div>
+
+    <h2>Pending Tasks</h2>
+    <ul id="pending-tasks-list"></ul>
+
+    <h2>Completed Tasks</h2>
+    <ul id="completed-tasks-list"></ul>
+
+    <script>
+        // Wait for the DOM to load
+        document.addEventListener('DOMContentLoaded', () => {
+            const taskInput = document.getElementById('task-input');
+            const addTaskBtn = document.getElementById('add-task-btn');
+            const pendingTasksList = document.getElementById('pending-tasks-list');
+            const completedTasksList = document.getElementById('completed-tasks-list');
+
+            // Function to add a new task
+            addTaskBtn.addEventListener('click', () => {
+                const taskText = taskInput.value.trim();
+                if (taskText !== "") {
+                    addTask(taskText); // Add new task to pending list
+                    taskInput.value = ""; // Clear input field
+                }
+            });
+
+            // Function to add task item to pending list
+            function addTask(task) {
+                const li = document.createElement('li');
+                li.textContent = task;
+
+                // Create 'Complete' button
+                const completeBtn = document.createElement('button');
+                completeBtn.textContent = 'Complete';
+                completeBtn.addEventListener('click', () => completeTask(li));
+
+                // Add task and button to the list item
+                li.appendChild(completeBtn);
+                pendingTasksList.appendChild(li);
+            }
+
+            // Function to mark a task as complete
+            function completeTask(taskItem) {
+                taskItem.classList.add('completed'); // Strike-through task text
+                completedTasksList.appendChild(taskItem); // Move to completed list
+                taskItem.querySelector('button').remove(); // Remove 'Complete' button
+            }
+        });
+
+    </script>
+</body>
+
+</html>
